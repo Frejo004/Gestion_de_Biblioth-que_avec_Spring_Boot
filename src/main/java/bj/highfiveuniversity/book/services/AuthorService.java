@@ -1,5 +1,7 @@
 package bj.highfiveuniversity.book.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import bj.highfiveuniversity.book.models.Author;
@@ -20,16 +22,32 @@ public class AuthorService {
         return authorRepository.findById(id).get();
     }
 
-    // //suppiimer un auteur
-    // public Author deleteAuteur(Long id) {
-    //     return authorRepository.deleteById(id).get();
-    // }
+    //afficher tout les auteur
+    public List<Author> getAllAuthors() {
+        return authorRepository.findAll();
+    }
 
-    // //mofidier un auteur
-    // public Author updateAuthor(Long id) {
-    //     return authorRepository.save(id).get();
-    // }
+    //suppiimer un auteur
+    public void deleteAuteur(Long id) {
+        authorRepository.deleteById(id);
+    }
+
+    //mofidier un auteur
+    public void updateAuthor(Author newauteur, Long id) {
+        Author MonAuteur = afficherAuteur(id);
+
+        MonAuteur.setNom(newauteur.getNom());
+        MonAuteur.setPrenom(newauteur.getPrenom());
+        MonAuteur.setNationnalite(newauteur.getNationnalite());
+        MonAuteur.setAge(newauteur.getAge());
+        
+        authorRepository.save(MonAuteur);
+    }
 
 
+    //rechercher un auteur
+    public List<Author> searchAuthor(String title) {
+        return authorRepository.findByNomContaining();
+    }
 
 }

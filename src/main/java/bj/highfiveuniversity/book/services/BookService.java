@@ -48,4 +48,9 @@ public class BookService {
     public List<Book> getAllBooks(){
         return bookRepository.findAll();
     }
+
+    //rechercher un livre
+    public List<Book> searchBook(String title) {
+        return bookRepository.findByTitleContaining(title);
+    }
 }

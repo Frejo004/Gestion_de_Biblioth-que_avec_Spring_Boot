@@ -59,6 +59,11 @@ public class BookController {
         bookService.updateBook( newLibre, id );
         return "Modification effectué avec succès";
     }
+
+    @GetMapping("/{title}")
+    public List<Book> getSearchBook(@PathVariable String title) {
+        return bookService.searchBook(title);
+    }
         
 
 }
