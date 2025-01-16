@@ -1,10 +1,15 @@
 package bj.highfiveuniversity.book.models;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
+
+@Entity
+@Table( name = "etageres")
 public class Shelves {
 
     @Id
@@ -12,7 +17,10 @@ public class Shelves {
     private Long id;
 
     @Column( nullable = false)
-    private String nom;
+    private String numero;
+
+    @Column ( nullable = true)
+    private String emplacemant;
 
 
 
@@ -25,14 +33,21 @@ public class Shelves {
         this.id = id;
     }
 
-    public String getNom() {
-        return nom;
+    public String getNumero() {
+        return numero;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
+    public void setNumero(String numero) {
+        this.numero = numero;
     }
 
+    public String getEmplacemant() {
+        return emplacemant;
+    }
+
+    public void setEmplacemant(String emplacemant) {
+        this.emplacemant = emplacemant;
+    }
 
     
 }
