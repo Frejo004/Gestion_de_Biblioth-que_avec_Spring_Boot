@@ -10,6 +10,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 
@@ -36,6 +37,22 @@ public class Book {
         inverseJoinColumns = @JoinColumn( name = "auteur_id")
     )
     private Set<Author> auteurs;
+
+
+    @ManyToOne
+    @JoinColumn( name = "editeur_id")
+    private Editor editeurs;
+
+
+    @ManyToOne
+    @JoinColumn( name = "categorie_id")
+    private Categorie categories;
+
+
+    @ManyToOne
+    @JoinColumn( name = "etagere_id")
+    private Shelves etageres;
+
 
 
 
