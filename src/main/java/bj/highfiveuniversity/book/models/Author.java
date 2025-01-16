@@ -29,6 +29,9 @@ public class Author {
     @ManyToMany(mappedBy = "auteurs")
     private Set<Book> Livres;
     
+
+
+    
     public int getAge() {
         return age;
     }
