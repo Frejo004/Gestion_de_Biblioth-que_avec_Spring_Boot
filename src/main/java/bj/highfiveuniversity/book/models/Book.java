@@ -71,6 +71,14 @@ public class Book {
         this.date_publication = date_publication;
     }
 
+    public Set<Author> getAuteurs() {
+        return auteurs;
+    }
+
+    public void setAuteurs(Set<Author> auteurs) {
+        this.auteurs = auteurs;
+    }
+
 
     
 
