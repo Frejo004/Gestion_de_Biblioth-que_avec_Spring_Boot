@@ -20,15 +20,24 @@ public class BookService {
         return bookRepository.save(livre); 
     }
 
-    // //modifier de livre
-    // public Book updateBook(Long id) {
-    //     return bookRepository.save(id).get(); 
-    // }
+    //modifier de livre
+    public void updateBook(Book newLivre, Long id) {
 
-    // //supprimer un livre
-    // public Book deleteBook(Long id) {
-    //     return bookRepository.deleteById(id);
-    // }
+        //récupération de l'Id du livre
+        Book MonLivre  = afficheBook(id);
+
+        //update des données
+        MonLivre.setTitle(newLivre.getTitle());
+        MonLivre.setIsbn(newLivre.getIsbn());
+        MonLivre.setDate_publication(newLivre.getDate_publication());
+        bookRepository.save(MonLivre);
+    }
+
+
+    //supprimer un livre
+    public void deleteBook(Long id) {
+        bookRepository.deleteById(id);
+    }
 
     //afficher un livre
     public Book afficheBook(Long id){

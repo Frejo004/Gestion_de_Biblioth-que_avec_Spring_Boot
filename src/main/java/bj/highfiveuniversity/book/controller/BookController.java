@@ -1,5 +1,7 @@
 package bj.highfiveuniversity.book.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,9 +27,9 @@ public class BookController {
     private BookService bookService;
 
     @GetMapping
-    public String getAllBook() {
-        bookService.getAllBooks();
-        return "Listes de tous les livres" ;
+    public List<Book> getAllBook() {
+        return bookService.getAllBooks();
+        
     }
     
     public String searchbook(@RequestParam  String author,@RequestParam(required = false) String year){
@@ -42,22 +44,21 @@ public class BookController {
     }
 
     @GetMapping("/{id}")
-    public String getOnBook(@PathVariable Long id) {
-        bookService.afficheBook(id);
-        return "Le livre avec l'id " + id + " est : le livre";
+    public Book getOnBook(@PathVariable Long id) {
+        return bookService.afficheBook(id);
     }
 
-    // @DeleteMapping("/{id}")
-    // public String deleteBook(@PathVariable Long id) {
-    //     bookService.deleteBook(id);
-    //     return "Le livre avec l'ID " + id + " est supprimé";
-    // }
+    @DeleteMapping("/{id}")
+    public String deleteBook(@PathVariable Long id) {
+        bookService.deleteBook(id);
+        return "Le livre avec l'ID " + id + " est supprimé";
+    }
 
-    // @PutMapping("/{id}")
-    // public String updateBook(@PathVariable Long id) {
-    //     bookService.updateBook(id);
-    //     return "Modification : l'ID " + id + " la modification a été éffectué avec succès";
-    // }
+    @PutMapping("/{id}")
+    public String modifBook(@RequestBody Book newLibre, @PathVariable Long id) {
+        bookService.updateBook( newLibre, id );
+        return "Modification effectué avec succès";
+    }
         
 
 }
