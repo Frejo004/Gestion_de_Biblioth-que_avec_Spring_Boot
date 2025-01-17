@@ -3,6 +3,8 @@ package bj.highfiveuniversity.book.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,36 +25,52 @@ public class AuthorController {
     @Autowired
     private AuthorService authorService;
 
+
+    //afficher la liste de tout les auteurs
     @GetMapping
-    public List<Author> getAllAuthors() {
-        return authorService.getAllAuthors();
+    public ResponseEntity<List<Author>> getAllAuthors() {
+        List<Author> auteurs =  authorService.getAllAuthors();
+        return ResponseEntity.ok(auteurs);
     }
 
+    //ajouter un nouveau auteur
     @PostMapping
-    public String addAuthor(@RequestBody Author auteur){
-        authorService.ajouterAuteur(auteur);
-        return"Auteur ajouter avec succès";
+    public ResponseEntity<Author> addAuthor(@RequestBody Author auteur)
+    {
+        Author addAuthor =  authorService.ajouterAuteur(auteur);
+        return ResponseEntity.status(HttpStatus.CREATED).body(addAuthor);
     }
 
+    
+    //afficher un auter par son id
     @GetMapping("/{id}")
-    public Author getOnAuthor(@PathVariable Long id) {
-        return authorService.afficherAuteur(id);
+    public ResponseEntity<Author> getOnAuthor(@PathVariable Long id) {
+        Author auteur = authorService.afficherAuteur(id);
+        return ResponseEntity.ok(auteur);
     }
 
 
+    //mise à jour des imformation de l'auteur
     @PutMapping("/{id}")
-    public String updateAuthor(@RequestBody Author newAuthor, @PathVariable Long id) {
-        authorService.updateAuthor( newAuthor, id);
-        return " Auteur modifié avec succès !";
+    public ResponseEntity<Author> updateAuthor(@RequestBody Author newAuthor, @PathVariable Long id) {
+        Author updated =  authorService.updateAuthor( newAuthor, id);
+        return ResponseEntity.status(204).body(updated);
     }
 
 
+    //supprimer par le id 
     @DeleteMapping("/{id}")
-    public String deleteAuthor(Long id) {
+    public ResponseEntity<Void> deleteAuthor(Long id) {
         authorService.deleteAuteur(id);
-        return "Auteur supprimé avec succès !";
+        return ResponseEntity.noContent().build();
     }
 
+
+    //rechercher par le nom de l'auteur
+    @GetMapping("/search/author")
+    public List<Author> getSearchAuthor(@PathVariable String nom) {
+        return authorService.searchAuthor(nom);
+    }
     
 
 }
