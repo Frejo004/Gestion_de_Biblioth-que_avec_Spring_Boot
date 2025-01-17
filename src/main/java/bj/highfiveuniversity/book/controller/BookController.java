@@ -30,8 +30,8 @@ public class BookController {
 
     //afficher tout les livres
     @GetMapping
-    public ResponseEntity<List<Book>> getAllBook() {
-        List<Book> livres = bookService.getAllBooks();
+    public ResponseEntity<List<BookDTO>> getAllBook() {
+        List<BookDTO> livres = bookService.getAllBooks();
         return ResponseEntity.ok(livres) ;
     }
     
