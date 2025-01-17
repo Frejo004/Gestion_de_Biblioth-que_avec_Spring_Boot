@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import bj.highfiveuniversity.book.dto.AuthorDTO;
 import bj.highfiveuniversity.book.models.Author;
 import bj.highfiveuniversity.book.services.AuthorService;
 
@@ -44,8 +45,8 @@ public class AuthorController {
     
     //afficher un auter par son id
     @GetMapping("/{id}")
-    public ResponseEntity<Author> getOnAuthor(@PathVariable Long id) {
-        Author auteur = authorService.afficherAuteur(id);
+    public ResponseEntity<AuthorDTO> getOnAuthor(@PathVariable Long id) {
+        AuthorDTO auteur = authorService.afficherAuteur(id);
         return ResponseEntity.ok(auteur);
     }
 
