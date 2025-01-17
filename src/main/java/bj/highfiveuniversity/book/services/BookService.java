@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import bj.highfiveuniversity.book.models.Book;
 import bj.highfiveuniversity.book.repository.BookRepository;
@@ -21,7 +22,7 @@ public class BookService {
     }
 
     //modifier de livre
-    public void updateBook(Book newLivre, Long id) {
+    public Book updateBook(Book newLivre, Long id) {
 
         //récupération de l'Id du livre
         Book MonLivre  = afficheBook(id);
@@ -30,7 +31,7 @@ public class BookService {
         MonLivre.setTitle(newLivre.getTitle());
         MonLivre.setIsbn(newLivre.getIsbn());
         MonLivre.setDate_publication(newLivre.getDate_publication());
-        bookRepository.save(MonLivre);
+        return bookRepository.save(MonLivre);
     }
 
 
@@ -50,7 +51,7 @@ public class BookService {
     }
 
     //rechercher un livre
-    public List<Book> searchBook(String title) {
+    public List<Book> searchBook(@RequestParam String title) {
         return bookRepository.findByTitleContaining(title);
     }
 }
