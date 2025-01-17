@@ -1,11 +1,14 @@
 package bj.highfiveuniversity.book.services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import bj.highfiveuniversity.book.dto.AuthorDTO;
+import bj.highfiveuniversity.book.mapper.AuthorMapper;
 import bj.highfiveuniversity.book.models.Author;
 import bj.highfiveuniversity.book.repository.AuthorRepository;
 
@@ -22,13 +25,21 @@ public class AuthorService {
     }
 
     //afficher un auteur
-    public Author afficherAuteur(Long id) {
-        return authorRepository.findById(id).get();
+    public AuthorDTO afficherAuteur(Long id) {
+        Author auteur =  authorRepository.findById(id).get();
+        return AuthorMapper.toDto(auteur);
     }
 
-    //afficher tout les auteur
-    public List<Author> getAllAuthors() {
-        return authorRepository.findAll();
+    //afficher tout les auteurs
+    public List<AuthorDTO> getAllAuthors() {
+        List<Author> auteurs =  authorRepository.findAll();
+        List<AuthorDTO> auteursDTO = new ArrayList<>();
+
+        for(Author auteur : auteurs) {
+            AuthorDTO auteurDto = AuthorMapper.toDto(auteur);
+            auteursDTO.add(auteurDto);
+        }
+        return auteursDTO;
     }
 
     //suppiimer un auteur
@@ -38,7 +49,7 @@ public class AuthorService {
 
     //mofidier un auteur
     public Author updateAuthor(Author newauteur, Long id) {
-        Author MonAuteur = afficherAuteur(id);
+        Author MonAuteur = authorRepository.findById(id).get();
 
         MonAuteur.setNom(newauteur.getNom());
         MonAuteur.setPrenom(newauteur.getPrenom());
