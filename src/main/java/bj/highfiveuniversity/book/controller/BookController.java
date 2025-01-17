@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,9 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import bj.highfiveuniversity.book.models.Author;
+import bj.highfiveuniversity.book.dto.BookDTO;
 import bj.highfiveuniversity.book.models.Book;
-import bj.highfiveuniversity.book.repository.BookRepository;
 import bj.highfiveuniversity.book.services.BookService;
 
 
@@ -52,8 +50,8 @@ public class BookController {
 
     //afficher un livre
     @GetMapping("/{id}")
-    public ResponseEntity<Book> getOnBook(@PathVariable Long id) {
-        Book livre =  bookService.afficheBook(id);
+    public ResponseEntity<BookDTO> getOnBook(@PathVariable Long id) {
+        BookDTO livre =  bookService.afficheBook(id);
         return ResponseEntity.ok(livre);
     }
 
