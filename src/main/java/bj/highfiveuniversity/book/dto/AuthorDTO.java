@@ -4,14 +4,12 @@ public class AuthorDTO {
     private Long id;
     private String nom;
     private String prenom;
-    private String nationalite;
 
     //construtor
-    public AuthorDTO(Long id, String nom, String prenom, String nationalite) {
+    public AuthorDTO(Long id, String nom, String prenom) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
-        this.nationalite = nationalite;
     }
 
 
@@ -39,16 +37,6 @@ public class AuthorDTO {
     public void setPrenom(String prenom) {
         this.prenom = prenom;
     }
-
-    public String getNationalite() {
-        return nationalite;
-    }
-
-    public void setNationalite(String nationalite) {
-        this.nationalite = nationalite;
-    }
-
-    
 
     
 }
