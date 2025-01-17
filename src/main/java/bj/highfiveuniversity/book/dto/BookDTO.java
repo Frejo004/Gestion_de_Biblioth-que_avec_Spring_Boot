@@ -1,23 +1,24 @@
 package bj.highfiveuniversity.book.dto;
 
 import java.time.LocalDate;
+import java.util.Set;
+
+import bj.highfiveuniversity.book.models.Author;
 
 
 public class BookDTO {
     private Long id;
     private String title;
     private String isbn;
-    private LocalDate  date_publication;
 
     //construtor
-    public BookDTO(Long id, String title, String isbn, LocalDate date_publication) {
+    public BookDTO(Long id, String title, String isbn, Set<Author> date_publication) {
         this.id = id;
         this.title = title;
         this.isbn = isbn;
-        this.date_publication = date_publication;
     }
 
-    
+
     //Getters and Setters
     public Long getId() {
         return id;
@@ -47,18 +48,6 @@ public class BookDTO {
     public void setIsbn(String isbn) {
         this.isbn = isbn;
     }
-
-
-    public LocalDate getDate_publication() {
-        return date_publication;
-    }
-
-
-    public void setDate_publication(LocalDate date_publication) {
-        this.date_publication = date_publication;
-    }
-
-    
     
 
 }
