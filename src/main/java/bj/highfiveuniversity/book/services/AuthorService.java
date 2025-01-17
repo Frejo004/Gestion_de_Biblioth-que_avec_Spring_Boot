@@ -3,10 +3,14 @@ package bj.highfiveuniversity.book.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import bj.highfiveuniversity.book.models.Author;
 import bj.highfiveuniversity.book.repository.AuthorRepository;
 
+
+@Service
 public class AuthorService {
 
     @Autowired
@@ -33,7 +37,7 @@ public class AuthorService {
     }
 
     //mofidier un auteur
-    public void updateAuthor(Author newauteur, Long id) {
+    public Author updateAuthor(Author newauteur, Long id) {
         Author MonAuteur = afficherAuteur(id);
 
         MonAuteur.setNom(newauteur.getNom());
@@ -41,13 +45,13 @@ public class AuthorService {
         MonAuteur.setNationnalite(newauteur.getNationnalite());
         MonAuteur.setAge(newauteur.getAge());
         
-        authorRepository.save(MonAuteur);
+        return authorRepository.save(MonAuteur);
     }
 
 
     //rechercher un auteur
-    public List<Author> searchAuthor(String title) {
-        return authorRepository.findByNomContaining();
+    public List<Author> searchAuthor(@RequestParam String nom) {
+        return authorRepository.findByNomContaining(nom);
     }
 
 }
