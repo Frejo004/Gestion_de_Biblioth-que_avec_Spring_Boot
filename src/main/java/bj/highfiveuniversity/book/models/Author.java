@@ -60,6 +60,14 @@ public class Author {
     public void setPrenom(String prenom) {
         this.prenom = prenom;
     }
+    public Set<Book> getLivres() {
+        return Livres;
+    }
+    public void setLivres(Set<Book> livres) {
+        Livres = livres;
+    }
+
+    
 
 
 
