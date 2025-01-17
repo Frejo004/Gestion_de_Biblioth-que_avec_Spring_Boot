@@ -29,8 +29,8 @@ public class AuthorController {
 
     //afficher la liste de tout les auteurs
     @GetMapping
-    public ResponseEntity<List<Author>> getAllAuthors() {
-        List<Author> auteurs =  authorService.getAllAuthors();
+    public ResponseEntity<List<AuthorDTO>> getAllAuthors() {
+        List<AuthorDTO> auteurs =  authorService.getAllAuthors();
         return ResponseEntity.ok(auteurs);
     }
 
