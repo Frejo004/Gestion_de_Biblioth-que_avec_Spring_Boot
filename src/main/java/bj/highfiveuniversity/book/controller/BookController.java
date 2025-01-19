@@ -78,4 +78,14 @@ public class BookController {
     }
         
 
+    @PostMapping("/create")
+    public ResponseEntity<Book> createBookWithAuthor(@RequestBody BookDTO request) {
+        Book book = bookService.saveBookWithAuthor(
+                request.getTitle(),
+                request.getIsbn(),
+                request.getAuteurIds()
+        );
+        return ResponseEntity.ok(book);
+    }
+
 }

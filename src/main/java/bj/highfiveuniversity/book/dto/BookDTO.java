@@ -10,6 +10,7 @@ public class BookDTO {
     private Long id;
     private String title;
     private String isbn;
+    private Set<Long> auteurIds;
 
     //construtor
     public BookDTO(Long id, String title, String isbn, Set<Author> date_publication) {
@@ -48,6 +49,17 @@ public class BookDTO {
     public void setIsbn(String isbn) {
         this.isbn = isbn;
     }
+
+
+    public Set<Long> getAuteurIds() {
+        return auteurIds;
+    }
+
+
+    public void setAuteurIds(Set<Long> auteurIds) {
+        this.auteurIds = auteurIds;
+    }
+    
     
 
 }
