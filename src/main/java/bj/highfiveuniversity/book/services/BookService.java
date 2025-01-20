@@ -1,10 +1,7 @@
 package bj.highfiveuniversity.book.services;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,11 +9,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import bj.highfiveuniversity.book.dto.BookDTO;
 import bj.highfiveuniversity.book.mapper.BookMapper;
-import bj.highfiveuniversity.book.models.Author;
 import bj.highfiveuniversity.book.models.Book;
-import bj.highfiveuniversity.book.repository.AuthorRepository;
 import bj.highfiveuniversity.book.repository.BookRepository;
-import jakarta.transaction.Transactional;
 
 @Service
 public class BookService {
@@ -24,7 +18,7 @@ public class BookService {
     @Autowired
     private BookRepository bookRepository;
 
-    
+
     // ajouter de livre
     public Book ajouterBook(Book livre) {
         return bookRepository.save(livre);
