@@ -1,11 +1,23 @@
 package bj.highfiveuniversity.book.dto;
 
+import java.util.Set;
+
+import jakarta.validation.constraints.NotNull;
+
 public class CreateAuthorDTO {
 
     private Long id;
+
+    @NotNull(message = "Merci de bien vouloir renseigner le nom de l'auteur")
     private String nom;
+
+    @NotNull(message = "Merci de bien vouloir renseigner le prenom de l'auteur")
     private String prenom;
+
+    @NotNull(message = "Merci de bien vouloir renseigner la nationnalité de l'auteur")
     private String nationnalite;
+
+    private Set<Long> livreId;
 
 
     public CreateAuthorDTO(Long id ,String nom, String prenom, String nationnalite) {
@@ -40,7 +52,17 @@ public class CreateAuthorDTO {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Set<Long> getLivreId() {
+        return livreId;
+    }
+
+
+    public void setLivreId(Set<Long> livreId) {
+        this.livreId = livreId;
     } 
 
 
+    
 }
