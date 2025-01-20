@@ -16,8 +16,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import bj.highfiveuniversity.book.dto.BookDTO;
+import bj.highfiveuniversity.book.dto.CreateBookDTO;
+import bj.highfiveuniversity.book.mapper.BookMapper;
 import bj.highfiveuniversity.book.models.Book;
 import bj.highfiveuniversity.book.services.BookService;
+import jakarta.validation.Valid;
 
 
 
@@ -42,9 +45,17 @@ public class BookController {
 
     //enregistrer un nouveau livre
     @PostMapping
-    public ResponseEntity<Book> addBook(@RequestBody Book livre) {
-        Book addBook = bookService.ajouterBook(livre);
-        return ResponseEntity.status(HttpStatus.CREATED).body(addBook) ;
+    public ResponseEntity<BookDTO> addBook(@Valid @RequestBody CreateBookDTO CreateBookDTO) {
+
+        Book livre = new Book();
+        livre.setTitle(CreateBookDTO.getTitle());
+        livre.setIsbn(CreateBookDTO.getIsbn());
+        livre.setDate_publication(CreateBookDTO.getDate_publication());
+
+        Book newBook = bookService.ajouterBook(livre);
+
+        BookDTO livreDto = BookMapper.toDto(newBook);
+        return ResponseEntity.status(HttpStatus.CREATED).body(livreDto) ;
     }
 
 
