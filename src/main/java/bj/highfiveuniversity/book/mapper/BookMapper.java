@@ -6,7 +6,7 @@ import bj.highfiveuniversity.book.models.Book;
 public class BookMapper {
     public static BookDTO toDto(Book livre) {
 
-        return new BookDTO(livre.getId(), livre.getTitle(), livre.getIsbn(), livre.getAuteurs());
+        return new BookDTO(livre.getId(), livre.getTitle(), livre.getIsbn());
     }
 
 }
