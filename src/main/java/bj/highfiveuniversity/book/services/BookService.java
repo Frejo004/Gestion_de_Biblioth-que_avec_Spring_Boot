@@ -24,24 +24,7 @@ public class BookService {
     @Autowired
     private BookRepository bookRepository;
 
-
-    @Autowired
-    private AuthorRepository authorRepository;
-
-    @Transactional
-    public Book saveBookWithAuthor(String title, String isbn,Set<Long> authorId) {
-        // Récupérer l'auteur depuis la base de données
-        Set<Author> authors = authorRepository.findAllById(authorId).stream().collect(Collectors.toSet());
-        // Créer un nouveau livre
-        Book book = new Book();
-        book.setTitle(title);
-        book.setIsbn(isbn);
-
-
-        // Enregistrer le livre dans la base de données
-        return bookRepository.save(book);
-    }
-
+    
     // ajouter de livre
     public Book ajouterBook(Book livre) {
         return bookRepository.save(livre);

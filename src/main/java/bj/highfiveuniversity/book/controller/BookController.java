@@ -41,7 +41,7 @@ public class BookController {
 
 
     //enregistrer un nouveau livre
-    @PostMapping("")
+    @PostMapping
     public ResponseEntity<Book> addBook(@RequestBody Book livre) {
         Book addBook = bookService.ajouterBook(livre);
         return ResponseEntity.status(HttpStatus.CREATED).body(addBook) ;
@@ -77,15 +77,4 @@ public class BookController {
         return bookService.searchBook(title);
     }
         
-
-    @PostMapping("/create")
-    public ResponseEntity<Book> createBookWithAuthor(@RequestBody BookDTO request) {
-        Book book = bookService.saveBookWithAuthor(
-                request.getTitle(),
-                request.getIsbn(),
-                request.getAuteurIds()
-        );
-        return ResponseEntity.ok(book);
-    }
-
 }
