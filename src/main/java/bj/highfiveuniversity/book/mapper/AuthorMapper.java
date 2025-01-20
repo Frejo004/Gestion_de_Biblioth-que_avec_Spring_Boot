@@ -9,4 +9,5 @@ public class AuthorMapper {
         
         return new AuthorDTO(auteur.getId(), auteur.getNom(), auteur.getPrenom());
     }
+
 }
