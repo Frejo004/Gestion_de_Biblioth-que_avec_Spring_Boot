@@ -15,8 +15,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import bj.highfiveuniversity.book.dto.AuthorDTO;
+import bj.highfiveuniversity.book.dto.CreateAuthorDTO;
+import bj.highfiveuniversity.book.mapper.AuthorMapper;
 import bj.highfiveuniversity.book.models.Author;
 import bj.highfiveuniversity.book.services.AuthorService;
+import jakarta.validation.Valid;
 
 
 @RestController
@@ -36,10 +39,17 @@ public class AuthorController {
 
     //ajouter un nouveau auteur
     @PostMapping
-    public ResponseEntity<Author> addAuthor(@RequestBody Author auteur)
+    public ResponseEntity<AuthorDTO> addAuthor(@Valid @RequestBody CreateAuthorDTO CreateAuthorDTO)
     {
-        Author addAuthor =  authorService.ajouterAuteur(auteur);
-        return ResponseEntity.status(HttpStatus.CREATED).body(addAuthor);
+        Author auteur = new Author();
+        auteur.setNom(CreateAuthorDTO.getNom());
+        auteur.setPrenom(CreateAuthorDTO.getPrenom());
+        auteur.setNationnalite(CreateAuthorDTO.getNationnalite());
+
+        Author newAuthor = authorService.ajouterAuteur(auteur);
+
+        AuthorDTO auteurDTO = AuthorMapper.toDto(newAuthor);
+        return ResponseEntity.status(HttpStatus.CREATED).body(auteurDTO);
     }
 
     
